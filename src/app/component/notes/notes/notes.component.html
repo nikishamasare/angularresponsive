@@ -1,0 +1,48 @@
+<div class="row p-3 m-0 bg-light">
+    <div>G Notes</div>
+</div>
+<div class="container-fluid shadow pb-2 mb-5 bg-white rounded">
+    <div class="row">
+        <div *ngIf="notesArray.length > 0" class="col-md-6">
+            <ng-container *ngFor="let note of notesArray; trackBy: trackByMethod">
+                <div class="card">
+                    <div class="card-body row">
+                        <div class="col-md-8">
+                            <div>Title: {{note?.title}}</div>
+                            <div>Description: {{note?.content}}</div>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="badge bg-light float-right p-2 text-dark"
+                                (click)="deleteNotes(note)">Delete</span>
+                            <span class="badge bg-light float-right p-2 text-dark mr-3"
+                                (click)="note.canEdit = true">Edit</span>
+
+                        </div>
+                        <div class="card body" *ngIf="note.canEdit">
+                            <input type="text" [(ngModel)]="note.title" name="title" class="form-control">
+                            <input type="text" [(ngModel)]="note.content" name="content" class="form-control">
+                            <span *ngIf="note.canEdit" class="badge bg-light text-danger p-2"
+                                (click)="note.canEdit = false">Close</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div [ngClass]="{'col-md-6': notesArray.length > 0, 'col': notesArray.length === 0}">
+            <div class="row p-3">
+                <div class="p-2 mb-2 bg-danger border border-secondary rounded-sm ml-auto text-white"> + Add Note </div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" [(ngModel)]="notes.title" name="title" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Body</label>
+                    <textarea name="content" [(ngModel)]="notes.content" class="form-control" rows="10"></textarea>
+                </div>
+                <button type="button" class="btn btn-primary float-right" (click)="addNotes()">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

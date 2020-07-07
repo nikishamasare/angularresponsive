@@ -22,8 +22,4 @@ export class NotesComponent implements OnInit {
     this.notesArray.push(this.notes);
     this.notes = {};
   }
-
-  trackByMethod(index: number, el: any): string {
-    return el.title;
-  }
 }

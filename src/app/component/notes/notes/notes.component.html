@@ -4,7 +4,7 @@
 <div class="container-fluid shadow pb-2 mb-5 bg-white rounded">
     <div class="row">
         <div *ngIf="notesArray.length > 0" class="col-md-6">
-            <ng-container *ngFor="let note of notesArray; trackBy: trackByMethod">
+            <ng-container *ngFor="let note of notesArray">
                 <div class="card">
                     <div class="card-body row">
                         <div class="col-md-8">
